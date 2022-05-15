@@ -17,3 +17,5 @@ To run LeNSE, follow the basic structure:
 
 
 NOTE: after train/test graphs have been obtained for IM, you will additionally need to run the file get_graph_sample_for_IC.py as these will be needed to compute the spread of the node. see the original Kempe et al. 2003 paper (Maximizing the spread of influence through a social network) for details on how these are used to calculate the spread of a node. 
+
+For any questions, please contact david.ireland@warwick.ac.uk.
