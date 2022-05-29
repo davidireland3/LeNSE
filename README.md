@@ -1,5 +1,7 @@
 # LeNSE
 
+This is the repo for the paper "LeNSE: Learning To Navigate Subgraph Embeddings for Large-Scale Combinatorial Optimisation", to appear at ICML 2022. The paper can be found [here](https://arxiv.org/abs/2205.10106). In this work we look to scale up existing CO solvers by pruning the original problem. This is done by learning to navigate subgraph embeddings. Using a small training graph, we generate a dataset of subgraphs with different rankings (including optimal subgraphs). Then, using this dataset, we train a Graph Neural Network to learn a discriminative subgraph embedding via the InfoNCE loss. This embedding is then used to guide the RL process to modify any random subgraph into an optimal subgraph. A heuristic is then deployed on the optimal subgraph to find a solution to the original problem.
+
 The repo for LeNSE is broken into subdirectories for each of the different problems. They have almost identical structure, with the main difference being which heuristic to use. There is also slightly more to do for IM, as we need to pre-calculate (sub)graphs based on coin flips to evaluate the score of a node -- details on this can be found in [Kempe et al.]([url](http://www.theoryofcomputing.org/articles/v011a004/v011a004.pdf))
 
 ## Obtaining the data
