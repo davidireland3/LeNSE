@@ -57,24 +57,3 @@ class EarlyStopping(object):
                 self.is_better = lambda a, best: a > best + (
                         best * min_delta / 100)
 
-
-def unsupervised_loss_geom(embeddings, graph_obj, num_nodes, rw_length, num_neg_examples):
-    # first we will get the positive embeddings
-    # embedding_size = embeddings.shape[1]
-    f = nn.LogSigmoid()
-    cos = nn.CosineSimilarity()
-    start = torch.LongTensor([i for i in range(num_nodes)]).to(device)
-    rw_ids = random_walk(graph_obj.edge_index[0], graph_obj.edge_index[1], start, rw_length)[:, -1]
-    # loss = -f(torch.sum(embeddings * embeddings[rw_ids], dim=1))
-    pos = cos(embeddings, embeddings[rw_ids])
-
-    # now get the negatives
-    neg = 0
-    for _ in range(num_neg_examples):
-        neg_ids = torch.LongTensor(np.random.randint(0, num_nodes, size=num_nodes)).to(device)
-        # loss -= f(torch.sum(-embeddings * embeddings[neg_ids], dim=1))
-        neg += cos(embeddings, embeddings[neg_ids])
-
-    loss = -pos + neg
-
-    return loss.mean()
