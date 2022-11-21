@@ -13,7 +13,7 @@ if __name__ == '__main__':
     random.seed(1)
     np.random.seed(1)
     BUDGET = 100
-    graph_name = "youtube_train"
+    graph_name = "wiki_train"
     args = sys.argv[1:]
     opts, args = getopt.getopt(args, "g:b:")
     for opt, arg in opts:

@@ -9,7 +9,7 @@ import getopt
 np.random.seed(1)
 random.seed(1)
 
-graph_name = "talk"
+graph_name = "wiki"
 EDGES = False
 args = sys.argv[1:]
 opts, args = getopt.getopt(args, "g:e:")

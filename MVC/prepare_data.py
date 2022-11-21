@@ -1,4 +1,4 @@
-from torch_geometric.data import DataLoader
+from torch_geometric.loader import DataLoader
 import torch
 import pickle
 import sys

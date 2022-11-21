@@ -3,7 +3,7 @@ from functions import relabel_graph
 import numpy as np
 
 np.random.seed(1)
-graph_name = "talk"
+graph_name = "wiki"
 
 f = open(f"{graph_name}/edges.txt", mode="r")
 lines = f.readlines()

@@ -3,7 +3,8 @@ import networkx as nx
 import random
 import torch
 import pickle
-from torch_geometric.data import DataLoader, Data
+from torch_geometric.data import Data
+from torch_geometric.loader import DataLoader
 from torch_geometric.transforms import ToUndirected
 import time
 from networkx.algorithms.centrality import eigenvector_centrality
@@ -201,7 +202,7 @@ def get_fixed_size_subgraphs(graph, good_seeds, num_samples, BUDGET, size, best_
             seeds += random.sample([n for n in graph.nodes() if n not in (list(good_seeds) + seeds)], size - len(seeds))
 
         elif target_label == 3:
-            seeds = np.random.choice(list(good_seeds), size=int(BUDGET * 0.1), replace=False).tolist()
+            seeds = np.random.choice(list(good_seeds), size=int(BUDGET * 0.0), replace=False).tolist()
             seeds += random.sample([n for n in graph.nodes() if n not in (list(good_seeds) + seeds)], size - len(seeds))
 
         elif target_label == 4:

@@ -1,4 +1,4 @@
-from torch_geometric.data import DataLoader
+from torch_geometric.loader import DataLoader
 import torch
 import numpy as np
 import pickle
@@ -13,15 +13,15 @@ random.seed(1)
 torch.manual_seed(1)
 np.random.seed(1)
 
-graph = "slashdot_train"
+graph = "wiki_train"
 pooling = True
 ratio = 0.8
 embedding_size = 30
 temperature = 0.1
-output_size = 2
+output_size = 10
 budget = 100
 batch_size = 64
-learning_rate = 0.01
+learning_rate = 1e-3
 metric = "distance"
 args = sys.argv[1:]
 opts, args = getopt.getopt(args, "g:e:r:o:t:m:b:l:p:")
@@ -51,7 +51,7 @@ train_ratio = 0.8
 with open(f"{graph}/budget_{budget}/graph_data", mode="rb") as f:
     data = pickle.load(f)
 random.shuffle(data)
-data = data[:1500]
+data = data[:2500]
 data = [d.to(device) for d in data]
 n = int(len(data) * train_ratio)
 

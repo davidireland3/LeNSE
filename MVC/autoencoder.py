@@ -10,9 +10,9 @@ import numpy as np
 import sys
 import getopt
 
-graph_name = "twitter_train"
-input_size = 5
-num_classes = 4
+graph_name = "wiki_train"
+input_size = 10
+num_classes = 3
 num_layers = 1
 budget = 100
 args = sys.argv[1:]

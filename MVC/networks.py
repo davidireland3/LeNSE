@@ -129,3 +129,24 @@ class QNet(nn.Module):
         x = torch.relu(self.h2(x))
         x = self.output_layer(x)
         return x
+
+
+class GNN(nn.Module):
+
+    def __init__(self, input_size, hidden_size, num_classes):
+
+        super(GNN, self).__init__()
+
+        self.gcn1 = SAGEConv(input_size, hidden_size)
+        self.gcn2 = SAGEConv(hidden_size, hidden_size)
+        self.gcn3 = SAGEConv(hidden_size, hidden_size)
+        self.output_layer = nn.Linear(hidden_size, num_classes)
+
+    def forward(self, data):
+        x, edge_index, batch = data.x, data.edge_index, data.batch
+
+        x = torch.relu(self.gcn1(x, edge_index))
+        x = torch.relu(self.gcn2(x, edge_index))
+        x = torch.relu(self.gcn3(x, edge_index))
+        outputs = self.output_layer(x)
+        return outputs
