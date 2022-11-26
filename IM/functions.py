@@ -160,12 +160,12 @@ def get_fixed_size_subgraphs(graph, good_seeds, num_samples, counts, BUDGET, siz
 
         elif target_label == 2:
 
-            r = np.random.uniform(0.7, 0.8)
+            r = np.random.uniform(0.5, 0.7)
             seeds = np.random.choice(list(good_seeds), size=int(BUDGET * r), replace=False, p=probs).tolist()
             seeds += random.sample([n for n in graph.nodes() if n not in (list(good_seeds) + seeds)], size - len(seeds))
 
         elif target_label == 3:
-            seeds = np.random.choice(list(good_seeds), size=int(BUDGET * 0.25), replace=False, p=probs).tolist()
+            seeds = np.random.choice(list(good_seeds), size=int(BUDGET * 0.0), replace=False, p=probs).tolist()
             seeds += random.sample([n for n in graph.nodes() if n not in (list(good_seeds) + seeds)], size - len(seeds))
 
         elif target_label == 4:

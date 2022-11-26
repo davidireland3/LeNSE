@@ -18,9 +18,9 @@ if __name__ == '__main__':
     np.random.seed(1)
     NUM_SAMPLES = 5
     NUM_CHECKPOINTS = 1
-    BUDGET = 100
-    FIXED_SIZE = 1000
-    graph_name = "amazon_train"
+    BUDGET = 50
+    FIXED_SIZE = 50
+    graph_name = "wiki_train"
     args = sys.argv[1:]
     opts, args = getopt.getopt(args, "g:n:b:c:f:")
     for opt, arg in opts:
@@ -68,21 +68,21 @@ if __name__ == '__main__':
     graph_features = make_graph_features_for_encoder(graph, graph_name)
     N_PER_LOOP = NUM_SAMPLES // NUM_CHECKPOINTS
     count = 0
-    for i in range(NUM_CHECKPOINTS):
-        count += 1
-        print("checkpoint", count)
-        subgraphs = get_fixed_size_subgraphs(graph, good_seeds, N_PER_LOOP, counts, BUDGET, FIXED_SIZE, pool, graph_name, best_score, graph_features, 1)
-        with open(f"{graph_name}/budget_{BUDGET}/data_{count}", mode="wb") as f:
-            pickle.dump(subgraphs, f)
-        del subgraphs
-
-    for i in range(NUM_CHECKPOINTS):
-        count += 1
-        print("checkpoint", count)
-        subgraphs = get_fixed_size_subgraphs(graph, good_seeds, N_PER_LOOP, counts, BUDGET, FIXED_SIZE, pool, graph_name, best_score, graph_features, 2)
-        with open(f"{graph_name}/budget_{BUDGET}/data_{count}", mode="wb") as f:
-            pickle.dump(subgraphs, f)
-        del subgraphs
+    # for i in range(NUM_CHECKPOINTS):
+    #     count += 1
+    #     print("checkpoint", count)
+    #     subgraphs = get_fixed_size_subgraphs(graph, good_seeds, N_PER_LOOP, counts, BUDGET, FIXED_SIZE, pool, graph_name, best_score, graph_features, 1)
+    #     with open(f"{graph_name}/budget_{BUDGET}/data_{count}", mode="wb") as f:
+    #         pickle.dump(subgraphs, f)
+    #     del subgraphs
+    #
+    # for i in range(NUM_CHECKPOINTS):
+    #     count += 1
+    #     print("checkpoint", count)
+    #     subgraphs = get_fixed_size_subgraphs(graph, good_seeds, N_PER_LOOP, counts, BUDGET, FIXED_SIZE, pool, graph_name, best_score, graph_features, 2)
+    #     with open(f"{graph_name}/budget_{BUDGET}/data_{count}", mode="wb") as f:
+    #         pickle.dump(subgraphs, f)
+    #     del subgraphs
 
     for i in range(NUM_CHECKPOINTS):
         count += 1

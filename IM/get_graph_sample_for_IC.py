@@ -5,7 +5,7 @@ import sys
 import getopt
 import os
 
-graph = "damascus"
+graph = "wiki_test"
 Type = "main"
 num_samples = 1000
 chunksize = 80
@@ -25,12 +25,12 @@ if not os.path.isdir(f"{graph}/IC_main_subgraphs"):
     os.mkdir(f"{graph}/IC_main_subgraphs")
 
 
-def make_subgraph(count, edges, p, graph):
-    outcomes = np.random.binomial(1, p=1 - p)
+def make_subgraph(count, edges_, p_, graph_):
+    outcomes = np.random.binomial(1, p=1 - p_)
     g2 = nx.DiGraph()
-    edges_to_keep = list(map(tuple, edges[outcomes == 0]))
+    edges_to_keep = list(map(tuple, edges_[outcomes == 0]))
     g2.add_edges_from(edges_to_keep)
-    nx.write_gpickle(g2, f"{graph}/IC_{Type}_subgraphs/subgraph_{count}")
+    nx.write_gpickle(g2, f"{graph_}/IC_{'main'}_subgraphs/subgraph_{count}")
 
 
 if __name__ == '__main__':
